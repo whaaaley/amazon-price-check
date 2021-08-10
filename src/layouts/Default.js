@@ -10,7 +10,7 @@ export default (props, children) => state => {
           {children(state, dispatch)}
         </div>
       </div>
-      <Panel/>
+      {process.env.APP_PROD === false && <Panel/>}
     </div>
   )
 }
