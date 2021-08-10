@@ -50,7 +50,8 @@ function yoink (chunk, { open, close }) {
 
 module.exports = function (sku) {
   let bytes = 0
-  const start = performance.now()
+  // const start = performance.now()
+  const start = Date.now()
   const url = 'https://www.amazon.com/dp/' + sku
 
   return new Promise(function (resolve, reject) {
@@ -69,7 +70,8 @@ module.exports = function (sku) {
                 bytes,
                 sku,
                 url,
-                ms: performance.now() - start,
+                // ms: performance.now() - start,
+                ms: Date.now() - start,
                 price: yoink(chunk, item.price)
               })
 
@@ -85,7 +87,8 @@ module.exports = function (sku) {
                 bytes,
                 sku,
                 url,
-                ms: performance.now() - start,
+                // ms: performance.now() - start,
+                ms: Date.now() - start,
                 price: `${currency}${dollar}.${cents}`
               })
             }
