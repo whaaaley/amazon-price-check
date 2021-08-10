@@ -9,7 +9,7 @@ const reload = require('./lib/reload-handler')
 const serve = require('./lib/serve-handler')
 const watch = require('./lib/watch')
 
-const flags = ['--port', '--watch']
+const flags = ['--netlify', '--port', '--watch']
 const dir = args['--watch']
 const port = args['--port'] || 3000
 const host = 'http://localhost:' + port
@@ -18,6 +18,12 @@ const server = http.createServer(function (req, res) {
   if (req.url === '/reload') {
     reload.handler(res)
     return // stop execution
+  }
+
+  // https://github.com/netlify/cli/issues/2710
+  if (args['--netlify'] === true) {
+    req.url = decodeURIComponent(req.url)
+    req.url = req.url.replace(/^\/\//g, '/')
   }
 
   serve.handler(req, res)

@@ -18,7 +18,7 @@ clean:
 	rm -f package-lock.json
 
 start: prepare css html
-	node server --scss "$(MAKE) css" --js "echo esbuild" --watch "src"
+	node server --netlify --scss "$(MAKE) css" --js "echo esbuild" --watch "src"
 
 prepare:
 	rm -rf public && mkdir public
