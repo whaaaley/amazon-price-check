@@ -1,0 +1,57 @@
+
+.page-home {
+  display: grid;
+  gap: 24px;
+  // height: 100vh;
+}
+
+.page-home-card {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  max-width: 480px;
+  // min-height: 320px;
+  margin: auto;
+  padding: 24px;
+  border-radius: 12px;
+  color: var(--amazon-navy, red);
+  background: var(--amazon-light, red);
+
+  > h1 {
+    font: 600 24px/1 var(--font-inter);
+    text-align: center;
+  }
+
+  > div {
+    display: flex;
+    gap: 12px;
+
+    > input {
+      flex: 1;
+    }
+  }
+}
+
+/**
+ * Tablet Screens
+ */
+
+@media (min-width: 768px + 1px) {
+  // empty
+}
+
+/**
+ * Laptop Screens
+ */
+
+@media (min-width: 1024px + 1px) {
+  // empty
+}
+
+/**
+ * Desktop Screens
+ */
+
+@media (min-width: 1440px + 1px) {
+  // empty
+}

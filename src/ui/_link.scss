@@ -1,0 +1,16 @@
+
+.ui-link {
+  display: flex;
+  place-items: center;
+  white-space: nowrap;
+
+  &.-carousel {
+    display: inline-block;
+    padding: 0 24px;
+    border: 2px solid #fff;
+    border-radius: 24px;
+    color: #fff;
+    font: 14px/48px var(--font-inter);
+    font: 16px/44px var(--font-inter);
+  }
+}
