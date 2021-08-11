@@ -49,7 +49,7 @@ const Table = ({ priceCheck }) => {
       </tr>
       <tr>
         <td>Time</td>
-        <td>{(data.ms ?? 0) / 1000 } ms</td>
+        <td>{data.ms ?? 0} ms</td>
       </tr>
     </table>
   )
