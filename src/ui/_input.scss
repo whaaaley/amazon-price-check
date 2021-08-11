@@ -1,26 +1,18 @@
 
 .ui-input {
-  height: 36px;
+  height: 42px;
   border: 2px solid var(--light-200, red);
   border-radius: 6px;
-  font: 14px/1 var(--font-inter);
+  font: 16px/1 var(--font-inter);
   text-indent: 18px;
-  transition:
-    border-color 100ms,
-    box-shadow 100ms;
+  transition: border-color 100ms;
 
-  &:focus {
-    border-color: var(--blue, red);
-    outline: none;
+  &::placeholder {
+    color: var(--light-400, red);
   }
 
-  &.-amazon {
-    border: 1px solid #a6a6a6;
-    border-top-color: #949494;
-
-    &:focus {
-      border-color: var(--amazon-orange, red);
-      box-shadow: 0 0 6px var(--amazon-orange, red);
-    }
+  &:focus {
+    border-color: var(--amazon-yellow, red);
+    outline: none;
   }
 }

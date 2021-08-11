@@ -2,26 +2,18 @@
 $white: #fff;
 $black: #000;
 
-/* Amazon */
+/* Amazon Color */
 $amazon-blue: #00a8e1;
 $amazon-fire: #fc4c02;
 $amazon-green: #00bd93;
-$amazon-light: #e6e6e6;
-$amazon-navy: #232f3e;
 $amazon-orange: #f90;
 $amazon-purple: #9146ff;
+$amazon-yellow: #febd69;
 
-/* Colors */
-// $red: lab(55, 63, 15); // $red: lab(50, 63, 23);
-// $orange: lab(60, 39, 55);
-// $yellow: lab(70, 15, 63);
-// $green: lab(60, -32, 0);
-// $blue: lab(50, -48, -64); // $blue: lab(50, 0, -64);
-// $purple: lab(40, 55, -64);
-
-/* Theme */
-// $primary: $amazon-orange;
-// $midnight: lab(5, -8, -15);
+/* Amazon Dark Color */
+$amazon-light: #e6e6e6;
+$amazon-dark: #131921;
+$amazon-navy: #232f3e;
 
 /* Desaturated Light */
 $light-600: lab(70, 0, -10);
@@ -43,30 +35,22 @@ $dark-100: lab(40, 0, -20);
   --white: #{$white};
   --black: #{$black};
 
-  /* Amazon */
+  /* Amazon Colors */
   --amazon-blue: #{$amazon-blue};
   --amazon-fire: #{$amazon-fire};
   --amazon-green: #{$amazon-green};
-  --amazon-light: #{$amazon-light};
-  --amazon-navy: #{$amazon-navy};
   --amazon-orange: #{$amazon-orange};
   --amazon-purple: #{$amazon-purple};
+  --amazon-yellow: #{$amazon-yellow};
 
-  /* Colors */
-  // --red: #{$red};
-  // --orange: #{$orange};
-  // --yellow: #{$yellow};
-  // --green: #{$green};
-  // --blue: #{$blue};
-  // --purple: #{$purple};
+  /* Amazon Dark Colors */
+  --amazon-light: #{$amazon-light};
+  --amazon-dark: #{$amazon-dark};
+  --amazon-navy: #{$amazon-navy};
 
-  /* Destructured Colors */
-  // --red-rgb: #{destructure-color($red)};
-  // --orange-rgb: #{destructure-color($orange)};
-  // --yellow-rgb: #{destructure-color($yellow)};
-  // --green-rgb: #{destructure-color($green)};
-  // --blue-rgb: #{destructure-color($blue)};
-  // --purple-rgb: #{destructure-color($purple)};
+  /* Destructured Amazon Dark Colors */
+  --amazon-dark-rgb: #{destructure-color($amazon-dark)};
+  --amazon-navy-rgb: #{destructure-color($amazon-navy)};
 
   /* Theme Colors */
   --primary: var(--amazon-orange);
@@ -89,6 +73,5 @@ $dark-100: lab(40, 0, -20);
 
   /* Fonts */
   --font-inter: 'Inter', sans-serif;
-  --font-mont: 'Mont', sans-serif;
   --font-monospace: 'Source Code Pro', monospace;
 }

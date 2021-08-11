@@ -1,57 +1,65 @@
 
 .page-home {
-  display: grid;
-  gap: 24px;
-  // height: 100vh;
+  min-width: 480px;
+
+  > footer {
+    padding: 24px 0;
+    font: 12px/16px var(--font-inter);
+    text-align: center;
+    white-space: pre-wrap;
+    opacity: 0.5;
+  }
 }
 
 .page-home-card {
-  display: grid;
-  gap: 24px;
-  width: 100%;
-  max-width: 480px;
-  // min-height: 320px;
-  margin: auto;
-  padding: 24px;
   border-radius: 12px;
-  color: var(--amazon-navy, red);
-  background: var(--amazon-light, red);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 12px rgba(var(--amazon-dark-rgb, red), 0.0625);
 
   > h1 {
+    padding: 24px;
+    color: #fff;
     font: 600 24px/1 var(--font-inter);
     text-align: center;
+    background: var(--amazon-navy, red);
   }
 
   > div {
-    display: flex;
-    gap: 12px;
-
-    > input {
-      flex: 1;
-    }
+    display: grid;
+    gap: 18px;
+    padding: 24px;
   }
 }
 
-/**
- * Tablet Screens
- */
+.page-home-row {
+  display: flex;
+  gap: 12px;
 
-@media (min-width: 768px + 1px) {
-  // empty
+  > input {
+    flex: 1;
+  }
 }
 
-/**
- * Laptop Screens
- */
+.page-home-table {
+  min-height: 96px;
+  padding: 0 24px;
 
-@media (min-width: 1024px + 1px) {
-  // empty
-}
+  &.-spinner {
+    background: url('/cache/spinner.svg') center / 48px no-repeat;
+  }
 
-/**
- * Desktop Screens
- */
+  > table {
+    display: grid;
+    grid: auto / 1fr 1fr;
+    font: 14px/24px var(--font-inter);
 
-@media (min-width: 1440px + 1px) {
-  // empty
+    > tr {
+      display: contents;
+
+      > td:first-child {
+        font-weight: 600;
+      }
+    }
+  }
 }

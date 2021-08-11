@@ -48,28 +48,3 @@ $font-mono: 'Source Code Pro', monospace;
   font-display: swap;
   src: url('/fonts/SourceCodProe-1.018/SourceCodePro-italic.var.otf') format('opentype');
 }
-
-/**
- *
- * Mont by Fontfabric
- * https://www.myfonts.com/fonts/font-fabric/mont/
- *
- */
-
-$font-mont: 'Mont', sans-serif;
-
-@font-face {
-  font-family: 'Mont';
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  src: url('/fonts/MontDEMO/MontExtraLightDEMO.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Mont';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('/fonts/MontDEMO/MontHeavyDEMO.woff2') format('woff2');
-}

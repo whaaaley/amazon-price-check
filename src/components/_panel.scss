@@ -98,52 +98,6 @@ $icon-x: ic-x(#fff);
 
 /**
  *
- * Component Panel Palette
- *
- */
-
-$colors: (
-  // 'red': $red,
-  // 'orange': $orange,
-  // 'yellow': $yellow,
-  // 'green': $green,
-  // 'blue': $blue,
-  // 'purple': $purple,
-  //
-  'light-600': $light-600,
-  'light-500': $light-500,
-  'light-400': $light-400,
-  'light-300': $light-300,
-  'light-200': $light-200,
-  'light-100': $light-100,
-  //
-  'dark-600': $dark-600,
-  'dark-500': $dark-500,
-  'dark-400': $dark-400,
-  'dark-300': $dark-300,
-  'dark-200': $dark-200,
-  'dark-100': $dark-100
-);
-
-// .component-panel-palette {}
-
-.component-panel-palette > div {
-  display: flex;
-  height: 24px;
-}
-
-.component-panel-palette > div > div {
-  flex: 1;
-}
-
-@each $key, $value in $colors {
-  .component-panel-palette > div > .-#{$key} {
-    background: $value;
-  }
-}
-
-/**
- *
  * Component Panel inspector
  *
  */

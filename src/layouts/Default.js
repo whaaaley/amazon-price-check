@@ -5,12 +5,10 @@ import { dispatch } from 'app'
 export default (props, children) => state => {
   return (
     <div class='layout-default'>
-      <div class='layout-default-content'>
-        <div>
-          {children(state, dispatch)}
-        </div>
+      <div>
+        {children(state, dispatch)}
+        {process.env.APP_PROD === false && <Panel/>}
       </div>
-      {process.env.APP_PROD === false && <Panel/>}
     </div>
   )
 }

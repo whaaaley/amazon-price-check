@@ -92,7 +92,7 @@ const Selector = props => {
  *
  */
 
-export default props => {
+export default () => {
   const state = getState()
   const { common, panel } = state
 
@@ -148,32 +148,6 @@ export default props => {
             onClick={toggleSidebar}
           />
           <hr/>
-        </div>
-        <div class='component-panel-palette'>
-          <div>
-            <div class='-red'></div>
-            <div class='-orange'></div>
-            <div class='-yellow'></div>
-            <div class='-green'></div>
-            <div class='-blue'></div>
-            <div class='-purple'></div>
-          </div>
-          <div>
-            <div class='-dark-600'></div>
-            <div class='-dark-500'></div>
-            <div class='-dark-400'></div>
-            <div class='-dark-300'></div>
-            <div class='-dark-200'></div>
-            <div class='-dark-100'></div>
-          </div>
-          <div>
-            <div class='-light-600'></div>
-            <div class='-light-500'></div>
-            <div class='-light-400'></div>
-            <div class='-light-300'></div>
-            <div class='-light-200'></div>
-            <div class='-light-100'></div>
-          </div>
         </div>
         <Selector state={state}/>
       </div>

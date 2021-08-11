@@ -59,19 +59,18 @@ module.exports = function (sku) {
         for (let i = 0; i < matches.length; i++) {
           const item = matches[i]
 
-          if (chunk.indexOf(item.identifier) !== -1) {
+          if (chunk.indexOf(item.identifier) > -1) {
             req.abort()
 
             if (item.name === 'deal_price') {
               const ms = Date.now() - start
               const price = yoink(chunk, item.price)
 
+              console.log('deal_price', { bytes, ms, price, sku, url })
               resolve({ bytes, ms, price, sku, url })
-
-              break // exit loop
             }
 
-            if (item.name === 'split_price') {
+            if (item.name === 'default_price') {
               const currency = yoink(chunk, item.currency)
               const dollar = yoink(chunk, item.dollars)
               const cents = yoink(chunk, item.cents)
@@ -79,6 +78,7 @@ module.exports = function (sku) {
               const ms = Date.now() - start
               const price = `${currency}${dollar}.${cents}`
 
+              console.log('default_price', { bytes, ms, price, sku, url })
               resolve({ bytes, ms, price, sku, url })
             }
           }
@@ -96,9 +96,9 @@ module.exports = function (sku) {
       })
     })
 
-    req.on('error', function (error) {
-      console.error(error)
-      reject(error)
+    req.on('error', function (err) {
+      console.error(err)
+      reject(err)
     })
   })
 }

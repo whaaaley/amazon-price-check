@@ -1,4 +1,5 @@
 
+import cc from 'classcat'
 import { dispatch } from 'app'
 
 import * as api from 'stores/api'
@@ -29,41 +30,37 @@ const updateSKU = value => {
  *
  */
 
-const PriceCheck = props => {
-  const table = props.table
+const Table = ({ priceCheck }) => {
+  const data = priceCheck.data ?? {}
+
+  const table = priceCheck.loading === null && (
+    <table>
+      <tr>
+        <td>SKU</td>
+        <td>{data.sku ?? 'N/A'}</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td>{data.price ?? 'N/A'}</td>
+      </tr>
+      <tr>
+        <td>Payload</td>
+        <td>{data.bytes ?? 0} bytes</td>
+      </tr>
+      <tr>
+        <td>Time</td>
+        <td>{(data.ms ?? 0) / 1000 } ms</td>
+      </tr>
+    </table>
+  )
+
+  const classList = cc([
+    'page-home-table',
+    priceCheck.loading && '-spinner'
+  ])
 
   return (
-    <div class='page-home-card'>
-      <h1>Amazon Price Check (Beta)</h1>
-      <div>
-        <Input
-          class='-amazon'
-          placeholder='SKU (example: B0013T5YO4)'
-          oninput={updateSKU}
-        />
-        <Button class='-amazon' onclick={priceCheck}>Check Price</Button>
-      </div>
-      <table>
-        <tbody>
-          <tr>
-            <td>Bytes</td>
-            <td>{table.bytes ?? 'N/A'}</td>
-          </tr>
-          <tr>
-            <td>SKU</td>
-            <td>{table.sku ?? 'N/A'}</td>
-          </tr>
-          <tr>
-            <td>MS</td>
-            <td>{table.ms ?? 'N/A'}</td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td>{table.price ?? 'N/A'}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class={classList}>{table}</div>
   )
 }
 
@@ -76,7 +73,17 @@ const PriceCheck = props => {
 const Home = (state, dispatch) => {
   return (
     <div class='page-home'>
-      <PriceCheck table={state.api.priceCheck.data ?? {}}/>
+      <div class='page-home-card'>
+        <h1>Amazon Price Check</h1>
+        <div>
+          <div class='page-home-row'>
+            <Input placeholder='SKU (example: B0013T5YO4)' oninput={updateSKU}/>
+            <Button class='-icon ic-search' onclick={priceCheck}>Check</Button>
+          </div>
+          <Table priceCheck={state.api.priceCheck}/>
+        </div>
+      </div>
+      <footer>This project is not endorsed by, affiliated with,{'\n'}maintained, authorized, or sponsored by Amazon.com, Inc.</footer>
     </div>
   )
 }
