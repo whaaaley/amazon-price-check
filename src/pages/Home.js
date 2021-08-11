@@ -44,11 +44,11 @@ const Table = ({ priceCheck }) => {
         <td>{data.price ?? 'N/A'}</td>
       </tr>
       <tr>
-        <td>Payload</td>
+        <td>Byte Length</td>
         <td>{data.bytes ?? 0} bytes</td>
       </tr>
       <tr>
-        <td>Time</td>
+        <td>Response Time</td>
         <td>{data.ms ?? 0} ms</td>
       </tr>
     </table>
