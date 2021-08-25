@@ -41,14 +41,14 @@ exports.typescript = {
 }
 
 exports.uglify = {
-  // toplevel: true,
-  // compress: {
-  //   drop_console: true,
-  //   passes: 3
-  // },
-  // mangle: {
-  //   toplevel: true
-  // }
+  toplevel: true,
+  compress: {
+    drop_console: true,
+    passes: 3
+  },
+  mangle: {
+    toplevel: true
+  }
 }
 
 exports.sass = {
