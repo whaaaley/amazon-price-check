@@ -47,8 +47,8 @@ module.exports = function (asin) {
       })
 
       decompress.on('error', function (err) {
-        console.log(err)
-        reject(err)
+        console.log('Error >>', err)
+        resolve({ error: 'Failed to decompress a chunk from the request.' })
       })
 
       res.on('data', function (chunk) {
@@ -57,13 +57,14 @@ module.exports = function (asin) {
       })
 
       res.on('end', function () {
+        console.log('End >>')
         resolve({ error: 'Failed to find a price for the requested ASIN.' })
       })
     })
 
     req.on('error', function (err) {
-      console.log(err)
-      reject(err)
+      console.log('Error >>', err)
+      resolve({ error: 'Failed to resolve the request.' })
     })
   })
 }
