@@ -31,7 +31,9 @@ const updateASIN = value => {
  */
 
 const Error = props => {
-  return props.message && <div class='page-home-error'>Error: There was a problem resolving your request.</div>
+  return props.message && (
+    <div class='page-home-error'>Error: {props.message}</div>
+  )
 }
 
 const Spinner = (props, children) => {
@@ -80,11 +82,11 @@ const Home = (state, dispatch) => {
       <div class='page-home-card'>
         <h1>Amazon Price Check</h1>
         <div>
+          <Error message={state.api.priceCheck.error}/>
           <div class='page-home-row'>
             <Input placeholder='ASIN (example: B0013T5YO4)' oninput={updateASIN}/>
             <Button class='-icon ic-search' onclick={priceCheck}>Check</Button>
           </div>
-          <Error message={state.api.priceCheck.error}/>
           <Spinner pending={state.api.priceCheck.pending === true}>
             <Table body={tableFOO}/>
             <Table body={tableBAR}/>
