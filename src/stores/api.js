@@ -61,7 +61,7 @@ function request (obj) {
     async function req () {
       const res = await fetch(obj.url, obj.options)
 
-      console.log(res)
+      console.log('>>>', res)
 
       if (res.status === 200) {
         dispatch(setResponse, { key: obj.key, data: await res.json() })
