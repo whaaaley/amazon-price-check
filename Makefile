@@ -11,7 +11,7 @@ all: NODE_ENV=development
 start: NODE_ENV=development
 
 all: prepare css js html
-	gzip --best --keep --no-name public/index.html
+#	gzip --best --keep --no-name public/index.html
 
 clean:
 	rm -rf node_modules public && mkdir public
