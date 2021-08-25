@@ -1,5 +1,5 @@
 
-const request = require('./request')
+const request = require('../request')
 
 const url = 'https://amazon-price-check.hasura.app/api/rest/history'
 const options = {
