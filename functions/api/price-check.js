@@ -4,27 +4,20 @@ const createHistory = require('../create-history')
 
 exports.handler = async (event, context) => {
   const asin = event.queryStringParameters.asin
+  const res = await googleScrape(asin)
 
-  async function ok () {
-    const res = await googleScrape(asin)
-
-    if (res.error) {
-      throw new Error(res.error)
-    }
-
+  if (res.error) {
     return {
-      statusCode: 200,
-      body: JSON.stringify({
-        priceCheck: res,
-        createHistory: await createHistory({ price: res.price, asin })
-      })
+      statusCode: 500,
+      body: JSON.stringify({ error: res.error })
     }
   }
 
-  try { return ok() } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: error.message })
-    }
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      priceCheck: res,
+      createHistory: await createHistory({ price: res.price, asin })
+    })
   }
 }

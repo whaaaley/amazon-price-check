@@ -7,7 +7,7 @@ MAKEFLAGS += --no-print-directory
 PATH := $(PWD)/node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
-all: NODE_ENV=development
+all: NODE_ENV=production
 start: NODE_ENV=development
 
 all: prepare css js html
