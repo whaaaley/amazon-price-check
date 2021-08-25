@@ -1,5 +1,5 @@
 
-import cc from 'classcat'
+// import cc from 'classcat'
 import { dispatch } from 'app'
 
 import * as api from 'stores/api'
@@ -20,8 +20,8 @@ const priceCheck = () => {
   dispatch(api.priceCheck)
 }
 
-const updateSKU = value => {
-  dispatch(common.set, { key: 'sku', value })
+const updateASIN = value => {
+  dispatch(common.set, { key: 'asin', value })
 }
 
 /**
@@ -30,37 +30,24 @@ const updateSKU = value => {
  *
  */
 
-const Table = ({ priceCheck }) => {
-  const data = priceCheck.data ?? {}
+const Error = props => {
+  // return props.message && <div class='page-home-error'>{props.message}</div>
+  return <div class='page-home-error'>Error: There was a problem resolving your request.</div>
+}
 
-  const table = priceCheck.loading === null && (
-    <table>
-      <tr>
-        <td>SKU</td>
-        <td>{data.sku ?? 'N/A'}</td>
-      </tr>
-      <tr>
-        <td>Price</td>
-        <td>{data.price ?? 'N/A'}</td>
-      </tr>
-      <tr>
-        <td>Byte Length</td>
-        <td>{data.bytes ?? 0} bytes</td>
-      </tr>
-      <tr>
-        <td>Response Time</td>
-        <td>{data.ms ?? 0} ms</td>
-      </tr>
-    </table>
-  )
+const Spinner = (props, children) => {
+  return props.pending === true
+    ? <div class='page-home-spinner'></div>
+    : children
+}
 
-  const classList = cc([
-    'page-home-table',
-    priceCheck.loading && '-spinner'
-  ])
-
+const Table = props => {
   return (
-    <div class={classList}>{table}</div>
+    <div class='page-home-table'>
+      <table>
+        {props.body.map(row => <tr>{row.map(data => <td>{data}</td>)}</tr>)}
+      </table>
+    </div>
   )
 }
 
@@ -71,16 +58,38 @@ const Table = ({ priceCheck }) => {
  */
 
 const Home = (state, dispatch) => {
+  const data = state.api.priceCheck.data
+
+  const foo = data?.priceCheck
+  const tableFOO = [
+    ['asin', foo?.asin ?? 'N/A'],
+    ['bytes', (foo?.bytes ?? 0) + ' bytes'],
+    ['ms', (foo?.ms ?? 0) + ' ms'],
+    ['price', foo?.price ?? 'N/A']
+  ]
+
+  const bar = data?.createHistory.insert_history_one
+  const tableBAR = [
+    ['id', bar?.id ?? 'N/A'],
+    ['created', bar?.created_at ?? 'N/A'],
+    ['price', bar?.price ?? 'N/A'],
+    ['asin', bar?.asin ?? 'N/A']
+  ]
+
   return (
     <div class='page-home'>
       <div class='page-home-card'>
         <h1>Amazon Price Check</h1>
         <div>
           <div class='page-home-row'>
-            <Input placeholder='SKU (example: B0013T5YO4)' oninput={updateSKU}/>
+            <Input placeholder='ASIN (example: B0013T5YO4)' oninput={updateASIN}/>
             <Button class='-icon ic-search' onclick={priceCheck}>Check</Button>
           </div>
-          <Table priceCheck={state.api.priceCheck}/>
+          <Error message={state.api.priceCheck.error}/>
+          <Spinner pending={state.api.priceCheck.pending === true}>
+            <Table body={tableFOO}/>
+            <Table body={tableBAR}/>
+          </Spinner>
         </div>
       </div>
       <footer>This project is not endorsed by, affiliated with,{'\n'}maintained, authorized, or sponsored by Amazon.com, Inc.</footer>

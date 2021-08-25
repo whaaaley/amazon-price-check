@@ -1,6 +1,6 @@
 
 export const state = {
-  sku: ''
+  asin: ''
 }
 
 export const toggle = ({ common }, key) => {

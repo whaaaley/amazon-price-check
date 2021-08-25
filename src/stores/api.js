@@ -5,11 +5,17 @@
  *
  */
 
-const newState = (data, error, loading, success) =>
-  Object.freeze({ data, error, loading, success })
+function newState (data, error, pending, success) {
+  return Object.freeze({
+    data,
+    error,
+    pending,
+    success
+  })
+}
 
 const init = newState(null, null, null, null)
-const loading = newState(null, null, true, null)
+const pending = newState(null, null, true, null)
 
 /**
  *
@@ -19,6 +25,7 @@ const loading = newState(null, null, true, null)
 
 export const state = {
   helloWorld: init,
+  history: init,
   priceCheck: init
 }
 
@@ -28,19 +35,44 @@ export const state = {
  *
  */
 
-const setLoading = ({ api }, key) => {
-  api[key] = loading
+function setPending ({ api }, key) {
+  api[key] = pending
   return { api }
 }
 
-// how does netlify deal wtih errors?
-// figure that out
-const setResponse = ({ api }, { key, data }) => {
-  api[key] = data.error
-    ? newState(null, data.error, null, false)
+function setResponse ({ api }, { key, data, error }) {
+  api[key] = error
+    ? newState(null, error, null, false)
     : newState(data, null, null, true)
 
   return { api }
+}
+
+/**
+ *
+ * Internal effects
+ *
+ */
+
+function request (obj) {
+  return async function (dispatch) {
+    dispatch(setPending, obj.key)
+
+    async function req () {
+      const res = await fetch(obj.url, obj.options)
+
+      if (res.status === 200) {
+        dispatch(setResponse, { key: obj.key, data: await res.json() })
+        return // exit
+      }
+
+      dispatch(setResponse, { key: obj.key, error: res.status })
+    }
+
+    try { return req() } catch (err) {
+      console.log('Request Error >>', err)
+    }
+  }
 }
 
 /**
@@ -49,29 +81,23 @@ const setResponse = ({ api }, { key, data }) => {
  *
  */
 
-export const helloWorld = (state, data) => dispatch => {
-  dispatch(setLoading, 'hello-world')
-
-  fetch('/.netlify/functions/hello-world')
-    .then(res => res.json())
-    .then(data => {
-      dispatch(setResponse, { key: 'hello-world', data })
-    })
-    .catch(error => {
-      console.log('Fetch Error', '>>', error.message, error)
-    })
+export function helloWorld () {
+  return request({
+    url: '/.netlify/functions/hello-world',
+    key: 'helloWorld'
+  })
 }
 
-export const priceCheck = (state, data) => dispatch => {
-  dispatch(setLoading, 'priceCheck')
+export function priceCheck (state) {
+  return request({
+    url: '/.netlify/functions/price-check?asin=' + state.common.asin,
+    key: 'priceCheck'
+  })
+}
 
-  fetch('/.netlify/functions/price-check?sku=' + state.common.sku)
-    .then(res => res.json())
-    .then(data => {
-      console.log('>>>', data)
-      dispatch(setResponse, { key: 'priceCheck', data })
-    })
-    .catch(error => {
-      console.log('Fetch Error', '>>', error.message, error)
-    })
+export function history () {
+  return request({
+    url: '/.netlify/functions/history',
+    key: 'history'
+  })
 }

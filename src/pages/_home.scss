@@ -41,17 +41,26 @@
   }
 }
 
+.page-home-error {
+  padding: 18px 24px;
+  border-radius: 6px;
+  color: #fff;
+  font: 14px/1 var(--font-inter);
+  background: var(--amazon-fire);
+}
+
+.page-home-spinner {
+  min-height: 96px;
+  background: url('/cache/spinner.svg') center / 48px no-repeat;
+}
+
 .page-home-table {
   min-height: 96px;
   padding: 0 24px;
 
-  &.-spinner {
-    background: url('/cache/spinner.svg') center / 48px no-repeat;
-  }
-
   > table {
     display: grid;
-    grid: auto / 1fr 1fr;
+    grid: auto / 1fr 3fr;
     font: 14px/24px var(--font-inter);
 
     > tr {

@@ -2,7 +2,7 @@
   <style type='text/css'>
     #spin {
       transform-origin: 6px 6px;
-      animation: 0.75s linear infinite spin;
+      animation: 400ms linear infinite spin;
     }
     @keyframes spin {
       100% {
