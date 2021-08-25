@@ -31,8 +31,7 @@ const updateASIN = value => {
  */
 
 const Error = props => {
-  // return props.message && <div class='page-home-error'>{props.message}</div>
-  return <div class='page-home-error'>Error: There was a problem resolving your request.</div>
+  return props.message && <div class='page-home-error'>Error: There was a problem resolving your request.</div>
 }
 
 const Spinner = (props, children) => {
