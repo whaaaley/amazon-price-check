@@ -43,7 +43,7 @@ exports.typescript = {
 exports.uglify = {
   toplevel: true,
   compress: {
-    drop_console: true,
+    // drop_console: true,
     passes: 3
   },
   mangle: {
