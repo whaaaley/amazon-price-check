@@ -40,9 +40,9 @@ function setPending ({ api }, key) {
   return { api }
 }
 
-function setResponse ({ api }, { key, data, error }) {
-  api[key] = error
-    ? newState(null, error, null, false)
+function setResponse ({ api }, { key, data }) {
+  api[key] = data.error
+    ? newState(null, data.error, null, false)
     : newState(data, null, null, true)
 
   return { api }
@@ -60,15 +60,11 @@ function request (obj) {
 
     async function req () {
       const res = await fetch(obj.url, obj.options)
+      const data = await res.json()
 
       console.log('>>>', res)
 
-      if (res.status === 200) {
-        dispatch(setResponse, { key: obj.key, data: await res.json() })
-        return // exit
-      }
-
-      dispatch(setResponse, { key: obj.key, error: res.status })
+      dispatch(setResponse, { key: obj.key, data })
     }
 
     try { return req() } catch (err) {

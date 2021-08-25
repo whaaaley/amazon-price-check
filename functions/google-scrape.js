@@ -40,7 +40,6 @@ module.exports = function (asin) {
               const price = chunk.slice(openIndex + open.length, closeIndex)
               const ms = Date.now() - start
 
-              console.log(name, { bytes, ms, price, asin, url })
               resolve({ bytes, ms, price, asin, url })
             }
           }
@@ -57,10 +56,9 @@ module.exports = function (asin) {
         decompress.write(chunk)
       })
 
-      // res.on('end', function () {
-      //   console.log('Failed to find a price for the requested ASIN.')
-      //   resolve({ error: 'Failed to find a price for the requested ASIN.' })
-      // })
+      res.on('end', function () {
+        resolve({ error: 'Failed to find a price for the requested ASIN.' })
+      })
     })
 
     req.on('error', function (err) {

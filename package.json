@@ -13,16 +13,16 @@
   },
   "devDependencies": {
     "clean-css": "^5.1.5",
-    "esbuild": "^0.12.19",
+    "esbuild": "^0.12.22",
     "sass": "1.32.13",
-    "svgo": "^2.3.1",
+    "svgo": "^2.4.0",
     "typescript": "^4.3.5",
     "uglify-js": "^3.14.1"
   },
   "optionalDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.24.0",
@@ -31,6 +31,7 @@
     "stylelint-order": "^4.1.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "npm": "7.x"
   }
 }
